@@ -1,3 +1,4 @@
+import com.designpatterns.StateObserver;
 import com.designpatterns.monster.Skeleton;
 import com.designpatterns.monster.Vampire;
 import com.designpatterns.monster.Werewolf;
@@ -27,6 +28,7 @@ public class Main {
         String name = scanner.next();
 
         Player player = new Player(name);
+        new StateObserver(player);
 
         System.out.println(String.format("Nice to meet you %s! \n", player.getName()));
 
@@ -50,6 +52,9 @@ public class Main {
         for (int i = 1; i <= roomCount; i++) {
             System.out.print(rand.nextInt(i) + 1);
         }
+
+        System.out.println("Player enters navigation state");
+        player.setState("Navigation");
 
         Skeleton skeleton = new Skeleton();
         skeleton.attack();
