@@ -7,9 +7,7 @@ import com.designpatterns.player.Player;
 import com.designpatterns.room.Room;
 import com.designpatterns.room.RoomFactory;
 
-import java.util.Random;
-
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -39,30 +37,59 @@ public class Main {
 
         String answer = scanner.next();
 
-        if (answer.equals("Yes") || answer.equals("yes")) {
+        if (answer.equals("Yes") || answer.equals("yes") || answer.equals("y") || answer.equals("Y")) {
             System.out.print("Great! Off you go! \n");
-        } else if (answer.equals("No") || answer.equals("no")){
+        } else if (answer.equals("No") || answer.equals("no") || answer.equals("n") || answer.equals("N")) {
             System.out.print("I'm sorry but we've got no time to lose. Best of luck! \n");
         }
 
-        System.out.print("*You pass through the big wooden frontgate of the castle and find yourself in the main hall* \n");
-
-        Random rand = new Random();
-        int roomCount = rand.nextInt(4) + 1;
-        for (int i = 1; i <= roomCount; i++) {
-            System.out.print(rand.nextInt(i) + 1);
-        }
+        System.out.print("*You pass through the big wooden frontgate of the castle* \n");
 
         System.out.println("Player enters navigation state");
         player.setState("Navigation");
 
-        Skeleton skeleton = new Skeleton();
-        skeleton.attack();
-        Zombie zombie = new Zombie();
-        zombie.attack();
-        Werewolf werewolf = new Werewolf();
-        werewolf.attack();
-        Vampire vampire = new Vampire();
-        vampire.attack();
+
+        //Navigation code
+        if (player.getState() == "Navigation") {
+            String location = player.getLocation();
+            switch (location) {
+                case "Ballroom":
+                    new Main().getNavigationDialogue(location, room2.getArray());
+            }
+
+        }
     }
-}
+
+    public void getNavigationDialogue(String location, ArrayList options) {
+        //Dynamische Dialogue voor room navigatie
+        System.out.println(String.format("*You currently find yourself in the %s!*", location));
+        System.out.println(String.format("You can navigate to: "));
+        int i = 0;
+        for (Object s : options) {
+            System.out.println(i + " " + s);
+            i++;
+        }
+        System.out.println(String.format("Where would you like to go?"));
+    }
+
+
+//        ** Randomized numbers **
+//        Random rand = new Random();
+//        int roomCount = rand.nextInt(4) + 1;
+//        for (int i = 1; i <= roomCount; i++) {
+//            System.out.print(rand.nextInt(i) + 1);
+//        }
+
+//        ** Monster Spawns **
+//        Skeleton skeleton = new Skeleton();
+//        skeleton.attack();
+//        Zombie zombie = new Zombie();
+//        zombie.attack();
+//        Werewolf werewolf = new Werewolf();
+//        werewolf.attack();
+//        Vampire vampire = new Vampire();
+//        vampire.attack();
+
+//        System.out.println(String.format("Your current amount of health is %s! \n", player.getHealth()));
+    }
+

@@ -9,6 +9,8 @@ public class Player {
     private List<Observer> observers = new ArrayList<Observer>();
     private String name;
     private String state;
+    private int health = 5;
+    private String location = "Ballroom";
 
     public Player(String name) {
         this.name = name;
@@ -23,9 +25,17 @@ public class Player {
         this.name = name;
     }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    public String getLocation() {
+        return location;
+    }
     public String getState() {
         return state;
     }
+
+    public int getHealth() { return health; }
 
     public void setState(String state) {
         this.state = state;
