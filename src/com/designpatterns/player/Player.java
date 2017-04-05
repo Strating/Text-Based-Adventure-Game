@@ -1,6 +1,6 @@
 package com.designpatterns.player;
 
-import com.designpatterns.Observer;
+import com.designpatterns.observer.Observer;
 import com.designpatterns.room.RoomFactory;
 import com.designpatterns.state.State;
 
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements State {
+    RoomFactory roomFactory = new RoomFactory();
     private State state;
     private List<Observer> observers = new ArrayList<Observer>();
     private String name;
-//    private String state;
     private int health = 5;
-    private String location = "Ballroom";
+    private String location = "Main Hall";
 
     public Player(String name) {
         this.name = name;
@@ -30,6 +30,8 @@ public class Player implements State {
 
     public void setLocation(String location) {
         this.location = location;
+        getDialogue(this, roomFactory);
+//        notifyAllObservers();
     }
     public String getLocation() {
         return location;

@@ -16,6 +16,12 @@ public class RoomFactory {
             return new Bedroom();
         } else if(roomType.equalsIgnoreCase("KITCHEN")){
             return new Kitchen();
+        } else if (roomType.equalsIgnoreCase("MAIN HALL")){
+            return new MainHall();
+        } else if (roomType.equalsIgnoreCase("STORAGE ROOM")){
+            return new StorageRoom();
+        } else if(roomType.equalsIgnoreCase("BOSSROOM")){
+            return new BossRoom();
         }
 
         return null;

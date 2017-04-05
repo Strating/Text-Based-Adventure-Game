@@ -1,5 +1,6 @@
 package com.designpatterns;
 
+import com.designpatterns.observer.Observer;
 import com.designpatterns.player.Player;
 
 public class StateObserver extends Observer {

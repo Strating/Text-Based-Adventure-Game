@@ -11,12 +11,12 @@ public class NavigationState implements State {
     @Override
     public void getDialogue(Player player, RoomFactory roomFactory){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("You find yourself in the " + player.getLocation());
+        System.out.println("\nYou find yourself in the " + player.getLocation());
         Room room = roomFactory.getRoom(player.getLocation());
-        System.out.println("Your options of navigation are: ");
+        System.out.println("Since there are no monsters you can safely move to another room, your options of navigation are: ");
         int i = 0;
         for (Object s : room.getArray()) {
-            System.out.println(i + " " + s);
+            System.out.println(i + " - " + s);
             i++;
         }
         System.out.println("Where would you like to go? ");
@@ -27,7 +27,7 @@ public class NavigationState implements State {
             System.out.println("* You proceed to the "+ room.getArray().get(i) + " *");
             player.setLocation(room.getArray().get(i).toString());
         } else {
-            System.out.println("*You proceed to the "+ room.getArray().get(Integer.parseInt(answer)) + " *");
+            System.out.println("*You proceed to the "+ room.getArray().get(Integer.parseInt(answer)) + " * " );
             player.setLocation(room.getArray().get(Integer.parseInt(answer)).toString());
         }
     }
