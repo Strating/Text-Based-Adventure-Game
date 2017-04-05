@@ -1,6 +1,7 @@
 package com.designpatterns.player;
 
 import com.designpatterns.Observer;
+import com.designpatterns.room.RoomFactory;
 import com.designpatterns.state.State;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class Player implements State {
     }
 
     @Override
-    public void doAction(){
-        this.state.doAction();
+    public void getDialogue(Player player, RoomFactory roomFactory){
+        this.state.getDialogue(this, roomFactory);
     }
 }

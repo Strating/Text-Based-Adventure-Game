@@ -17,11 +17,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RoomFactory roomFactory = new RoomFactory();
-        Room room1 = roomFactory.getRoom("Stairway");
-        Room room2 = roomFactory.getRoom("Ballroom");
-        Room room3 = roomFactory.getRoom("Bedroom");
-        Room room4 = roomFactory.getRoom("Kitchen");
-        Room room5 = roomFactory.getRoom("Basement");
         State navigation = new NavigationState();
         State engaged = new EngagedState();
 
@@ -49,33 +44,14 @@ public class Main {
         }
 
         System.out.print("*You pass through the big wooden frontgate of the castle* \n");
-
-        System.out.println("Player enters navigation state");
         player.setState(navigation);
 
-
-        //Navigation code
         if (player.getState() == navigation) {
-            String location = player.getLocation();
-            switch (location) {
-                case "Ballroom":
-                    new Main().getNavigationDialogue(location, room2.getArray());
+            player.getDialogue(player, roomFactory);
             }
-
         }
     }
 
-    public void getNavigationDialogue(String location, ArrayList options) {
-        //Dynamische Dialogue voor room navigatie
-        System.out.println(String.format("*You currently find yourself in the %s!*", location));
-        System.out.println(String.format("You can navigate to: "));
-        int i = 0;
-        for (Object s : options) {
-            System.out.println(i + " " + s);
-            i++;
-        }
-        System.out.println(String.format("Where would you like to go?"));
-    }
 
 
 //        ** Randomized numbers **
@@ -96,5 +72,4 @@ public class Main {
 //        vampire.attack();
 
 //        System.out.println(String.format("Your current amount of health is %s! \n", player.getHealth()));
-    }
 
