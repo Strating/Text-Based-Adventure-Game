@@ -1,14 +1,16 @@
 package com.designpatterns.player;
 
 import com.designpatterns.Observer;
+import com.designpatterns.state.State;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player implements State {
+    private State state;
     private List<Observer> observers = new ArrayList<Observer>();
     private String name;
-    private String state;
+//    private String state;
     private int health = 5;
     private String location = "Ballroom";
 
@@ -31,15 +33,14 @@ public class Player {
     public String getLocation() {
         return location;
     }
-    public String getState() {
-        return state;
+
+    public State getState() {
+        return this.state;
     }
-
-    public int getHealth() { return health; }
-
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
+    public int getHealth() { return health; }
 
     // Observer methods
     public void attach(Observer observer){
@@ -50,5 +51,10 @@ public class Player {
         for (Observer observer : observers) {
             observer.update();
         }
+    }
+
+    @Override
+    public void doAction(){
+        this.state.doAction();
     }
 }

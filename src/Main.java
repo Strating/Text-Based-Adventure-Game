@@ -6,6 +6,9 @@ import com.designpatterns.monster.Zombie;
 import com.designpatterns.player.Player;
 import com.designpatterns.room.Room;
 import com.designpatterns.room.RoomFactory;
+import com.designpatterns.state.EngagedState;
+import com.designpatterns.state.NavigationState;
+import com.designpatterns.state.State;
 
 import java.util.*;
 
@@ -19,6 +22,8 @@ public class Main {
         Room room3 = roomFactory.getRoom("Bedroom");
         Room room4 = roomFactory.getRoom("Kitchen");
         Room room5 = roomFactory.getRoom("Basement");
+        State navigation = new NavigationState();
+        State engaged = new EngagedState();
 
         System.out.print("Welcome to this text based adventure game! \n");
         System.out.print("First of all, what is your name? \n");
@@ -46,11 +51,11 @@ public class Main {
         System.out.print("*You pass through the big wooden frontgate of the castle* \n");
 
         System.out.println("Player enters navigation state");
-        player.setState("Navigation");
+        player.setState(navigation);
 
 
         //Navigation code
-        if (player.getState() == "Navigation") {
+        if (player.getState() == navigation) {
             String location = player.getLocation();
             switch (location) {
                 case "Ballroom":
