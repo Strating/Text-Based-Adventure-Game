@@ -2,4 +2,4 @@
 
 This is a design patterns school project.
 
-Navigate through textual input!
+Navigate through textual input
